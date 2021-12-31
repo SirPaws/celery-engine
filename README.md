@@ -1,5 +1,49 @@
-# celery-engine (0.8)
-A minimalistic game engine written in C99
+# 🥬 Celery Engine (0.8)
+> a celery is a cultivated plant of the parsley family, 
+> with closely packed succulent leaf stalks which are used as a salad or cooked vegetable.
+
+But that's not what this is, though they may share a name their differences are vast.
+This is Celery a small toolkit written in C99, inspired by the olc::PixelGameEngine[^1]
+created by the youtuber javid9x and Processing[^2] first initiated by Ben Fry and Casey Reas.
+at this moment it is still in development and has missing features.
+
+[^1]: https://github.com/OneLoneCoder/olcPixelGameEngine
+[^2]: https://processing.org
+
+# Usage
+As celery is inspired by Processing it has a similar interface to it
+
+```c
+#define CELERY_MAIN
+#include "celery.h"
+
+void setup(void) {
+  ceSize(960, 540);
+}
+
+void draw(void) {
+  const u32 width  = ceWidth();
+  const u32 height = ceHeight();
+
+  for (u32 y = 0; y < height; y++) {
+    for (u32 x = 0; x < width; x++) {
+      cePixel p = {.r= rand()%255,.g= rand()%255,.b= rand() % 255,.a= 255};
+      ceDraw(x, y, p);
+    }
+  }
+}
+```  
+this example is the minimal example, there are other functions that you can optionally define:
+```c
+void update(f64);
+```
+this function is meant for updating variables each frame
+```c
+void terminate(void);
+```
+and here's the one for termination of the program.
+All of these functions are optional and will only be called if defined
+
 
 # License (dual license: MIT or UNLICENSE)
 this software is licensed under either MIT or UNLICENSE
